@@ -8,7 +8,7 @@ output "availability_set" {
   value       = azurerm_availability_set.availability_set
 }
 
-output "loaddbalancer" {{
+output "loaddbalancer" {
   description = "The availability_set object"
   value       = azurerm_lb.loadbalancer
 }
