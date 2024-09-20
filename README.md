@@ -25,6 +25,7 @@ No requirements.
 | [azurerm_lb_backend_address_pool.loadbalancer-lbbp](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_backend_address_pool) | resource |
 | [azurerm_lb_probe.loadbalancer-lbhp](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_probe) | resource |
 | [azurerm_lb_rule.loadbalancer-lbr](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/lb_rule) | resource |
+| [azurerm_network_interface_backend_address_pool_association.LB_VMs](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_interface_backend_address_pool_association) | resource |
 
 ## Inputs
 
@@ -48,4 +49,5 @@ No requirements.
 |------|-------------|
 | <a name="output_VMs"></a> [VMs](#output\_VMs) | The vm module object |
 | <a name="output_availability_set"></a> [availability\_set](#output\_availability\_set) | The availability\_set object |
+| <a name="output_loaddbalancer"></a> [loaddbalancer](#output\_loaddbalancer) | The availability\_set object |
 <!-- END_TF_DOCS -->
