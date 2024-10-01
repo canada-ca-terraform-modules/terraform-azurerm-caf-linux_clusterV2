@@ -7,7 +7,7 @@ variable "linux_vms_clusterV2" {
 module "linux_VMs_clusterV2" {
 
     for_each = var.linux_vms_clusterV2
-    source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-vmss-linuxV2.git"
+    source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_clusterV2.git?ref=1.0.1"
     location= var.location
     env = var.env
     group = var.group
