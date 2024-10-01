@@ -11,7 +11,7 @@ linux_vms_clusterV2 = {
                     # admin_password          = "Canada123!"                          # Optional: Only set the password if a generated password cannot be created. See README for details
                     # password_overwrite = false                                       # Optional: Set this to true if you absolutely want to set the admin password above
                     vm_size              = "Standard_D2s_v5"
-                    disable_password_authentication = false
+                    disable_password_authentication = true
 
                     backup_policy = "daily1"                                                                                     # Optional: Set this value to configure backup policy on the VM. Can be either userDefinedString portion of the policy name or ID. Defaults to daily1 
                     # disable_backup           = false                                                                             # Optional: Set this value to true if you want to disable backups on this VM    
@@ -38,10 +38,10 @@ linux_vms_clusterV2 = {
                     }
 
                     # Optional: Uncomment if you need to configure admin ssh key.  
-                    # admin_ssh_key = {
-                    # public_key = ""
-                    # username = "azureadmin"
-                    # }
+                    admin_ssh_key = {
+                    public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDuTSk84xTHvnZukwLTULAxkMS/4fyFnZ8M1INlQyLkS54KXqfrYMFDHVMJSaUDP0Of5vqtloa+thxu1wKkxCBDSpdwm+8+sBfY6zDI24A3k0cZlmUR86v6y+6RP97t5J0NbSkBEgg3PZH0MoRXU18jT4WBPHV/E5jvLzoD77CqM53pDJbbx0pBqUfJ2nUVRltPMSvnoDWlEjsxWs6UyXVXlchKIlIqc8x+N+S2cGHmUlCW/xQs6HqVD8js9NSXqTqdaYdqPw5MxsRPub2AkEev65wHAAnWbYiLrdlEjac6DnRrYWIyDV3lrTqrKREOd5BsAotCNc5grt9VWnNJfq6KJmPvmfSEj/ZTUwpbqYEg3Mj6tu/4+P6bn5OD3wugAIZXyu950KDQPUi4+COVT6uPQKLDxpEHM+Ydjh7/yDmq+uCm1HUK0r92R7jNXZOQqDj0iDblSu01CMqgfKEgdeEPkfGpL/EkdgGfKKIhMX2ED2j/o98JSmIq2c9AKQaZD2E= ken@G3McSWJ-RDSH02"
+                    username = "azureadmin"
+                    }
 
                     storage_image_reference = {
                     publisher = "canonical",
@@ -94,7 +94,8 @@ linux_vms_clusterV2 = {
                 # azurerm_lb section
                 #
                 # edge_zone = "" # (Optional) Specifies the Edge Zone within the Azure Region where this Load Balancer should exist. Changing this forces a new Load Balancer to be created.
-
+                postfix = "01"
+                resource_group_name ="Project"
                 frontend_ip_configuration = {
                     feipc1 = {
                     subnet                                             = "MAZ"         # (Required) The name or the resource id of the Subnet which should be used for this IP Configuration
