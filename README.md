@@ -15,7 +15,7 @@ No requirements.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_linux_VMs"></a> [linux\_VMs](#module\_linux\_VMs) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_virtual_machineV2.git | v1.0.1 |
-| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-load_balancer.git | v1.0.0 |
+| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-load_balancer.git | n/a |
 
 ## Resources
 
