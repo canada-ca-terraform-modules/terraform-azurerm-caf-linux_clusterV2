@@ -1,5 +1,5 @@
 module "linux_VMs" {
-  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_virtual_machineV2.git?ref=v1.0.0"
+  source = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_virtual_machineV2.git?ref=v1.0.1"
   for_each = var.linux_vms_cluster.linux_VMs
 
   location= var.location
