@@ -1,6 +1,7 @@
 output "VMs" {
   description = "The vm module object"
   value       = module.linux_VMs
+  sensitive   = true
 }
 
 output "availability_set" {
@@ -8,7 +9,12 @@ output "availability_set" {
   value       = azurerm_availability_set.availability_set
 }
 
+output "load_balancer" {
+  description = "The load balancer module object"
+  value       = module.load_balancer
+}
+
 output "loaddbalancer" {
-  description = "The availability_set object"
+  description = "The load balancer module object"
   value       = module.load_balancer
 }

@@ -2,20 +2,23 @@
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | n/a |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.65.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_linux_VMs"></a> [linux\_VMs](#module\_linux\_VMs) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_virtual_machineV2.git | v1.0.6 |
-| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-load_balancer.git | n/a |
+| <a name="module_load_balancer"></a> [load\_balancer](#module\_load\_balancer) | github.com/canada-ca-terraform-modules/terraform-azurerm-caf-load_balancer.git | v1.0.2 |
 
 ## Resources
 
@@ -46,5 +49,6 @@ No requirements.
 |------|-------------|
 | <a name="output_VMs"></a> [VMs](#output\_VMs) | The vm module object |
 | <a name="output_availability_set"></a> [availability\_set](#output\_availability\_set) | The availability\_set object |
-| <a name="output_loaddbalancer"></a> [loaddbalancer](#output\_loaddbalancer) | The availability\_set object |
+| <a name="output_load_balancer"></a> [load\_balancer](#output\_load\_balancer) | The load balancer module object |
+| <a name="output_loaddbalancer"></a> [loaddbalancer](#output\_loaddbalancer) | The load balancer module object |
 <!-- END_TF_DOCS -->
