@@ -4,6 +4,5 @@ locals {
   serverType_3        = substr(var.serverType, 0, 3)
   userDefinedString_7 = substr(var.userDefinedString, 0, 7)
   as_name             = replace("${local.env_4}${local.serverType_3}-${local.userDefinedString_7}-as", local.name_regex, "")
-  lb_name             = replace("${local.env_4}${local.serverType_3}-${local.userDefinedString_7}-lb", local.name_regex, "")
 
 }
