@@ -12,8 +12,13 @@ module "linux_VMs" {
   resource_groups = var.resource_groups
   subnets         = var.subnets
   tags            = var.tags
-  user_data       = try(each.value.user_data, false) != false ? base64encode(file("${path.cwd}/${each.value.user_data}")) : null
-  depends_on      = [azurerm_availability_set.availability_set]
+  custom_data = try(each.value.custom_data, false) != false ? (
+    each.value.custom_data == "install-ca-certs"
+    ? each.value.custom_data
+    : base64encode(file("${path.cwd}/${each.value.custom_data}"))
+  ) : null
+  user_data  = try(each.value.user_data, false) != false ? base64encode(file("${path.cwd}/${each.value.user_data}")) : null
+  depends_on = [azurerm_availability_set.availability_set]
 }
 
 resource "azurerm_network_interface_backend_address_pool_association" "LB_VMs" {
