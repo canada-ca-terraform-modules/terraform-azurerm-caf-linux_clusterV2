@@ -187,3 +187,39 @@ run "multiple_vms_with_basic_lb" {
     error_message = "Expected both VM NICs to be associated with the load balancer backend pool"
   }
 }
+
+run "tags_propagation" {
+  command = plan
+
+  variables {
+    tags = {
+      env            = "dev"
+      classification = "pbmm"
+      owner          = "test@example.com"
+    }
+    linux_vms_cluster = {
+      resource_group = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-cluster"
+      linux_VMs      = {}
+      as = {
+        platform_fault_domain_count  = 1
+        platform_update_domain_count = 1
+        platform_managed             = true
+      }
+    }
+  }
+
+  assert {
+    condition     = output.availability_set.tags["env"] == "dev"
+    error_message = "Expected the 'env' tag to be propagated to the availability set"
+  }
+
+  assert {
+    condition     = output.availability_set.tags["classification"] == "pbmm"
+    error_message = "Expected the 'classification' tag to be propagated to the availability set"
+  }
+
+  assert {
+    condition     = output.availability_set.tags["owner"] == "test@example.com"
+    error_message = "Expected the 'owner' tag to be propagated to the availability set"
+  }
+}
