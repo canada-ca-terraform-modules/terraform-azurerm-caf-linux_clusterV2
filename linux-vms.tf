@@ -1,5 +1,5 @@
 module "linux_VMs" {
-  source   = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_virtual_machineV2.git?ref=v1.0.6"
+  source   = "github.com/canada-ca-terraform-modules/terraform-azurerm-caf-linux_virtual_machineV2.git?ref=v1.0.7"
   for_each = var.linux_vms_cluster.linux_VMs
 
   location          = var.location
@@ -11,6 +11,7 @@ module "linux_VMs" {
 
   resource_groups = var.resource_groups
   subnets         = var.subnets
+  tags            = var.tags
   user_data       = try(each.value.user_data, false) != false ? base64encode(file("${path.cwd}/${each.value.user_data}")) : null
   depends_on      = [azurerm_availability_set.availability_set]
 }
