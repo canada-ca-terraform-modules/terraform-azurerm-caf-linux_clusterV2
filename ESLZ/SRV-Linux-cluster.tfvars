@@ -43,9 +43,13 @@ linux_vms_clusterV2 = {
         # secure_boot_enabled                                    = false
         # source_image_id                                        = ""
         # virtual_machine_scale_set_id                           = ""
-        # vm_agent_platform_updates_enabled                      = false
         # vtpm_enabled                                           = null
         # zone                                                   = null
+        # vm_name                                                = ""      # Optional (module v2.0.0+): Override the auto-generated VM name (default: {env4}{serverType3}-{userDefinedString7})
+        # os_managed_disk_id                                     = ""      # Optional (module v2.0.0+): Use an existing Managed Disk as the OS Disk instead of source_image_reference/source_image_id
+        # NOTE: vm_agent_platform_updates_enabled was removed as a settable argument in module v2.0.0 - the Azure API
+        # redefined it as a platform-controlled, read-only field. Setting it has no effect and it is exposed only via
+        # the linux_vm_object output's vm_agent_platform_updates_enabled attribute.
 
         # At least one nic is required. If more than one is present, the first nic in the list will be the primary one.
         nic = {
@@ -59,6 +63,13 @@ linux_vms_clusterV2 = {
             # ip_forwarding_enabled          = false
             # accelerated_networking_enabled = false
             # internal_dns_name_label        = ""
+            # private_ip_address_version     = "IPv4" # Optional: IPv4 or IPv6
+            # name                           = ""     # Optional (module v2.0.0+): Override the auto-generated NIC name (default: <vm-name>-nicN)
+            # ip_configuration_name          = ""     # Optional (module v2.0.0+): Override the auto-generated NIC IP configuration name (default: <vm-name>-ipconfigN)
+            # auxiliary_mode                 = ""     # Optional (module v2.0.0+): Possible values are AcceleratedConnections, FloatingVIP, MaxConnections and None
+            # auxiliary_sku                  = ""     # Optional (module v2.0.0+): Possible values are A1, A2, A4, A8 and None
+            # public_ip_address_id                               = "" # Optional (module v2.0.0+): The ID of a Public IP Address to associate with this NIC's IP configuration
+            # gateway_load_balancer_frontend_ip_configuration_id = "" # Optional (module v2.0.0+): The Frontend IP Configuration ID of a Gateway SKU Load Balancer
           }
         }
 
@@ -81,6 +92,14 @@ linux_vms_clusterV2 = {
           storage_account_type      = "Standard_LRS"
           disk_size_gb              = 128
           write_accelerator_enabled = false
+          # name                             = ""   # Optional (module v2.0.0+): Override the auto-generated OS disk name (default: <vm-name>-osdisk1)
+          # disk_encryption_set_id           = ""   # Optional (module v2.0.0+): The ID of the Disk Encryption Set which should be used to encrypt this OS Disk
+          # secure_vm_disk_encryption_set_id = ""   # Optional (module v2.0.0+): Conflicts with disk_encryption_set_id; requires security_encryption_type = DiskWithVMGuestState
+          # security_encryption_type         = ""   # Optional (module v2.0.0+): VMGuestStateOnly or DiskWithVMGuestState (Confidential VM)
+          # diff_disk_settings = {                  # Optional (module v2.0.0+): Ephemeral OS disk settings; only valid when caching = ReadOnly
+          #   option    = "Local"
+          #   placement = "CacheDisk" # CacheDisk, ResourceDisk or NvmeDisk
+          # }
         }
 
         # Optional: Uncomment and configure data disks for the VM. Can create more than one data disks.
@@ -91,6 +110,20 @@ linux_vms_clusterV2 = {
         #     disk_size_gb = 500
         #     lun = 0
         #     caching = "ReadWrite"
+        #     name                   = ""    # Optional (module v2.0.0+): Override the auto-generated data disk name (default: <vm-name>-datadiskN where N = lun+1)
+        #     disk_encryption_set_id = ""    # Optional (module v2.0.0+)
+        #     network_access_policy  = ""    # Optional (module v2.0.0+): AllowAll, AllowPrivate or DenyAll
+        #     disk_access_id         = ""    # Optional (module v2.0.0+): Required when network_access_policy = AllowPrivate
+        #     encryption_settings = {         # Optional (module v2.0.0+)
+        #       disk_encryption_key = {
+        #         secret_url      = ""
+        #         source_vault_id = ""
+        #       }
+        #       key_encryption_key = {
+        #         key_url         = ""
+        #         source_vault_id = ""
+        #       }
+        #     }
         #   }
         # }
 
@@ -191,8 +224,11 @@ linux_vms_clusterV2 = {
         #     destination_port_ranges      = [""]
         #     destination_address_prefixes = [""]
         #     description                  = ""
+        #     source_application_security_group_ids      = [] # Optional (module v2.0.0+)
+        #     destination_application_security_group_ids = [] # Optional (module v2.0.0+)
         #   }
         # }
+        # nsg_name = "" # Optional (module v2.0.0+): Override the auto-generated NSG name (default: <vm-name>-nsg). Requires use_nic_nsg = true.
       }
     }
     lb = {

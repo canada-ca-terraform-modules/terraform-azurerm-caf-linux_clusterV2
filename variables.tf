@@ -64,6 +64,7 @@ variable "subnets" {
   default     = {}
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "user_data" {
   description = "Base64 encoded file representing user data script for the VM"
   type        = any
