@@ -16,7 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v7.0.1
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
+          # On pull_request events, check out the PR head branch so docs can be
+          # committed back to it. On push events there is no PR context, so
+          # fall back to the ref that triggered the workflow.
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1.4.1

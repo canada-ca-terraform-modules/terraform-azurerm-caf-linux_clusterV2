@@ -1,4 +1,15 @@
 # terraform-azurerm-caf-linux_clusterV2
+
+## Breaking changes for existing consumers (v1.2.0)
+
+- The `load_balancer` child module was bumped to `v2.0.0`, which renamed the
+  backend address pool's `tunnel_interfaces` input key to `tunnel_interface`
+  (singular). Any `.tfvars` still using the plural `tunnel_interfaces` key will
+  have it silently ignored rather than erroring - update it to the singular
+  `tunnel_interface` key. See `CHANGELOG.md` for details.
+- The `loaddbalancer` output (misspelled) is deprecated - use `load_balancer`
+  instead. It is kept only for backward compatibility with existing callers.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -41,7 +52,7 @@
 | <a name="input_subnets"></a> [subnets](#input\_subnets) | (Required) List of subnet objects for the VM | `any` | `{}` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | Tags that will be applied to every associated VM resource | `map(string)` | `{}` | no |
 | <a name="input_userDefinedString"></a> [userDefinedString](#input\_userDefinedString) | (Required) User defined portion value for the name of the VM. | `string` | `"test"` | no |
-| <a name="input_user_data"></a> [user\_data](#input\_user\_data) | Base64 encoded file representing user data script for the VM | `any` | `null` | no |
+| <a name="input_user_data"></a> [user\_data](#input\_user\_data) | Not used by this module. Set per-VM user\_data via linux\_vms\_cluster.linux\_VMs.<key>.user\_data instead. | `any` | `null` | no |
 
 ## Outputs
 
@@ -50,5 +61,5 @@
 | <a name="output_VMs"></a> [VMs](#output\_VMs) | The vm module object |
 | <a name="output_availability_set"></a> [availability\_set](#output\_availability\_set) | The availability\_set object |
 | <a name="output_load_balancer"></a> [load\_balancer](#output\_load\_balancer) | The load balancer module object |
-| <a name="output_loaddbalancer"></a> [loaddbalancer](#output\_loaddbalancer) | The load balancer module object |
+| <a name="output_loaddbalancer"></a> [loaddbalancer](#output\_loaddbalancer) | DEPRECATED - use `load_balancer` instead. The load balancer module object |
 <!-- END_TF_DOCS -->

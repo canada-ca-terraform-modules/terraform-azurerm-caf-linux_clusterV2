@@ -64,9 +64,12 @@ variable "subnets" {
   default     = {}
 }
 
+# Not currently consumed by this module - per-VM user_data is read from
+# linux_vms_cluster.linux_VMs.<key>.user_data instead (see linux-vms.tf).
+# Kept for interface compatibility; not forwarded to any child module.
 # tflint-ignore: terraform_unused_declarations
 variable "user_data" {
-  description = "Base64 encoded file representing user data script for the VM"
+  description = "Not used by this module. Set per-VM user_data via linux_vms_cluster.linux_VMs.<key>.user_data instead."
   type        = any
   default     = null
 }

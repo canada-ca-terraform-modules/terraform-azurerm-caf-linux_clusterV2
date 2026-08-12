@@ -18,6 +18,12 @@ jobs:
         with:
           ref: main
 
+      # ESLZ/SRV-Linux-cluster.tf is expected to contain exactly one `?ref=vX.Y.Z`
+      # source pin - the self-referential source for this module's own ESLZ
+      # example. If a second module source with its own ref is ever added to
+      # this file, `head -1` will silently pick whichever match comes first;
+      # keep this module's own version pin as the first `ref=` in the file, or
+      # move version tracking to a dedicated file (e.g. VERSION) instead.
       - name: Extract version from ESLZ/SRV-Linux-cluster.tf
         id: version
         run: |

@@ -4,6 +4,16 @@ All notable changes to this module are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [Unreleased]
+
+### Fixed (PR review feedback)
+
+- `output.tf`: marked the misspelled `loaddbalancer` output as deprecated (description + comment), pointing callers at `load_balancer` instead.
+- `variables.tf`: clarified the `user_data` variable description - it is not consumed by this module (per-VM `user_data` is read from `linux_vms_cluster.linux_VMs.<key>.user_data` instead); the old "Base64 encoded file" description was misleading at this layer.
+- `.github/workflows/documentation.yml`: `ref: ${{ github.event.pull_request.head.ref }}` resolved to an empty string on `push` events (no PR context); added a `|| github.ref` fallback.
+- `.github/workflows/release.yml`: documented the assumption that `ESLZ/SRV-Linux-cluster.tf` contains exactly one `?ref=vX.Y.Z` source pin, since the version-extraction `grep | head -1` depends on it.
+- `README.md`: added a "Breaking changes for existing consumers" section calling out the `load_balancer` v2.0.0 `tunnel_interfaces` -> `tunnel_interface` rename and the `loaddbalancer` output deprecation, both of which were previously only documented in `CHANGELOG.md`.
+
 ## [1.2.0] - 2026-08-12
 
 ### Changed
