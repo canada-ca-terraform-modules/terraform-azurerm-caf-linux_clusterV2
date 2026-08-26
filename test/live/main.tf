@@ -41,3 +41,5 @@ module "linux_cluster" {
   subnets           = local.subnets         # from test_dependencies.tf
   tags              = var.tags
 }
+
+# trigger live-test path filter for the workflow PR
