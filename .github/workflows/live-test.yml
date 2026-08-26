@@ -64,7 +64,11 @@ jobs:
 
       - uses: hashicorp/setup-terraform@v4.0.1
         with:
-          terraform_version: "~> 1.9"
+          # This module's providers.tf requires terraform >= 1.11 (bumped in
+          # v1.2.0) - the canonical template's own "~> 1.9" resolves to 1.9.8,
+          # which fails this module's Baseline apply with "Unsupported
+          # Terraform Core version".
+          terraform_version: "~> 1.11"
 
       - name: Azure login (OIDC)
         uses: azure/login@v2
