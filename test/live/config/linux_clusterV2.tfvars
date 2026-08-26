@@ -15,6 +15,10 @@
 # source lookups entirely on this module's current released version - no
 # Recovery Services Vault is created by test_dependencies.tf.
 #
+# vm_size uses the Dav6 family (Standard_D2as_v6) - the sandbox subscription's
+# default Dsv5/Dasv5 family quota hits a hard Azure capacity restriction in
+# canadacentral (SkuNotAvailable), while Dav6 has quota provisioned.
+#
 # custom_data is deliberately left unset - "install-ca-certs" would trigger
 # an external data.http fetch unrelated to this harness.
 
@@ -34,7 +38,7 @@ linux_vms_cluster = {
       admin_password                  = "CHANGE-ME-P@ssw0rd1234!" # placeholder only - throwaway live-test VM, destroyed after use
       disable_password_authentication = false
       password_overwrite              = true
-      vm_size                         = "Standard_D2s_v5"
+      vm_size                         = "Standard_D2as_v6"
 
       jump_server    = true
       disable_backup = true
